@@ -26,7 +26,7 @@ end
 
 def submit_topics(input)
   db_connection do |conn|
-    results=conn.exec("INSERT INTO clinictopics (topic,time_proposed,votes,status) VALUES('#{input}',now(),1,'Submitted')")
+    results=conn.exec("INSERT INTO clinictopics (topic,time_proposed,votes,status) VALUES('#{input}',now(),0,'Submitted')")
   end
 end
 
@@ -48,15 +48,19 @@ def update_status(input)
   end
 end
 
+def sort_by_vote(clinictopics)
+  clinictopics.sort_by {|first,second| first[3]<=>second[3]}.reverse
+end
+
 
 get '/' do
-  @topics=display_topics.sort_by {|first,second| first[3]<=>second[3]}.reverse
+  @topics=sort_by_vote(display_topics)
 
   erb :index
 end
 
 get '/staff' do
-  @topics=display_topics.sort_by {|first,second| first[3]<=>second[3]}.reverse
+  @topics=sort_by_vote(display_topics)
   erb :staff
 end
 

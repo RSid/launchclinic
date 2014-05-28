@@ -46,3 +46,11 @@ h1 {
 .staff-input {
   padding: 5px;
 }
+
+h3 {
+  padding-top: 20px;
+}
+
+.input {
+  padding: 15px 0px;
+}

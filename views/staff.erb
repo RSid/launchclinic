@@ -25,7 +25,7 @@
 
   <ol class="proposed-topics">
     <% @topics.each do |topic| %>
-      <li><strong><%= "#{topic[1]}" %></strong>  <%="Votes: #{topic[3]} - Submitted: #{(Time.parse(topic[2])).strftime("%m-%d-%y at %I:%M %p")} - Status: #{topic[4]}" %></li>
+      <li><strong><%= "#{topic[1]}" %></strong>  <%="Votes: #{topic[3]} - Topic submitted: #{(Time.parse(topic[2])).strftime("%m-%d-%y at %I:%M %p")} - Status: #{topic[4]}" %></li>
     <% end %>
   </ol>
 
