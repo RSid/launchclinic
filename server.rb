@@ -1,9 +1,26 @@
 require 'sinatra'
 require 'pg'
 
+
+configure :production do
+
+  set :db_connection_info, {
+    host: ENV['DB_HOST'],
+    dbname: ENV['DB_NAME'],
+    user: ENV['USER'],
+    password: ENV['PASSWORD']
+  }
+
+end
+
+configure :development do
+  set :db_connection_info, {dbname: 'clinictopics'}
+
+end
+
 def db_connection
   begin
-    connection = PG.connect(ENV['postgres://xtdrykpensibhs:KKdBG7JvmnCNIsAarg5L1yBnUX@ec2-107-20-224-35.compute-1.amazonaws.com:5432/d99r7muj1t784d'] || 'postgres://localhost/clinictopics')
+    connection = PG.connect(settings.db_connection_info)
 
     yield(connection)
 
