@@ -31,7 +31,7 @@ end
 
 def display_topics
   db_connection do |conn|
-    results=conn.exec('SELECT * FROM clinictopics')
+    results=conn.exec('SELECT * FROM clinictopics ORDER BY votes DESC')
     results.values
   end
 
@@ -61,19 +61,15 @@ def update_status(input)
   end
 end
 
-def sort_by_vote(clinictopics)
-  clinictopics.sort_by {|first,second| first[3]<=>second[3]}.reverse
-end
-
 
 get '/' do
-  @topics=sort_by_vote(display_topics)
+  @topics=display_topics
 
   erb :index
 end
 
 get '/staff' do
-  @topics=sort_by_vote(display_topics)
+  @topics=display_topics
   erb :staff
 end
 
