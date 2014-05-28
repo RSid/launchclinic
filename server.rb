@@ -91,14 +91,14 @@ post '/vote' do
   @vote=params["vote"]
   increment_topic_votes(@vote)
 
-  redirect '/'
+  redirect '/staff'
 end
 
 post '/unvote' do
   @unvote=params["unvote"]
   decrement_topic_votes(@unvote)
 
-  redirect '/'
+  redirect '/staff'
 end
 
 
@@ -106,12 +106,12 @@ post '/delete' do
   @delete=params["delete"]
   delete_topics(@delete)
 
-  redirect '/'
+  redirect '/staff'
 end
 
 post '/update' do
   @update=params["update"]
   update_status(@update)
 
-  redirect '/'
+  redirect '/staff'
 end
