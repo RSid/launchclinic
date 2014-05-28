@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clinic Topics</title>
+  <link rel="stylesheet" href="clinic.css" />
+</head>
+<body>
+
+<div class='top-header'>
+<br>
+<br>
+</div>
+<div class='bottom-header'>
+<br>
+<br>
+</div>
+<img src="logo.png" class="logo"/>
+
+<div class="content">
+
+  <h1>Vote on topics to be covered in clinics!</h1>
+
+
+    <div class="topic-voter">
+    <form action="/vote" method="post">
+        <label for="vote">Vote on a topic for clinic! (please copy-paste the name) List is below </label>
+        <input type="text" name="vote" id="vote"/>
+        <input type="submit" value="Submit" />
+    </form>
+    </div>
+
+  <ol class="proposed-topics">
+    <% @topics.each do |topic| %>
+      <li><strong><%= "#{topic[1]}" %></strong>  <%="- Votes: #{topic[3]} - Submitted: #{(Time.parse(topic[2])).strftime("%m-%d-%y at %I:%M %p")} - Status: #{topic[4]}" %></li>
+    <% end %>
+  </ol>
+
+      <div class="topic-submitter">
+    <form action="/" method="post">
+        <label for="subject">Not see something you want covered? Submit topic for clinic: </label>
+        <input type="text" name="subject" id="subject"/>
+        <input type="submit" value="Submit" />
+    </form>
+    </div>
+
+</div>
+
+</body>
+</html>

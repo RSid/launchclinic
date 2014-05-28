@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Staff Topic Management</title>
+  <link rel="stylesheet" href="/clinic.css" />
+</head>
+<body>
+
+<div class='top-header'>
+<br>
+<br>
+</div>
+<div class='bottom-header'>
+<br>
+<br>
+</div>
+<a href="/"><img src="logo.png" class="logo"/></a>
+
+<div class="content">
+
+<h1>Staff Topic Management</h1>
+
+  <h3>Submitted Topics</h3>
+
+  <ol class="proposed-topics">
+    <% @topics.each do |topic| %>
+      <li><strong><%= "#{topic[1]}" %></strong>  <%="Votes: #{topic[3]} - Submitted: #{(Time.parse(topic[2])).strftime("%m-%d-%y at %I:%M %p")} - Status: #{topic[4]}" %></li>
+    <% end %>
+  </ol>
+
+ <div class="staff-input">
+    <form action="/delete" method="post">
+        <label for="delete">Delete topic from the list (copy-paste title) </label>
+        <input type="text" name="delete" id="delete"/>
+        <input type="submit" value="Submit" />
+    </form>
+  </div>
+
+  <div class="staff-input">
+    <form action="/update" method="post">
+        <label for="update">Schedule topic for talk </label>
+        <input type="text" name="update" id="update"/>
+        <input type="submit" value="Submit" />
+    </form>
+  </div>
+
+</div>
+
+</body>
+</html>
