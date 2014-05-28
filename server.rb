@@ -49,6 +49,12 @@ def increment_topic_votes(input)
   end
 end
 
+def decrement_topic_votes(input)
+  db_connection do |conn|
+    results=conn.exec("UPDATE clinictopics SET votes=votes-1 WHERE topic='#{input}'")
+  end
+end
+
 def delete_topics(input)
   db_connection do |conn|
     results=conn.exec("DELETE FROM clinictopics WHERE topic='#{input}'")
@@ -84,6 +90,13 @@ end
 post '/vote' do
   @vote=params["vote"]
   increment_topic_votes(@vote)
+
+  redirect '/'
+end
+
+post '/unvote' do
+  @unvote=params["unvote"]
+  decrement_topic_votes(@unvote)
 
   redirect '/'
 end
