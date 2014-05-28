@@ -3,7 +3,7 @@ require 'pg'
 
 def db_connection
   begin
-    connection = PG.connect(dbname: d99r7muj1t784d port: 5432)
+    connection = PG.connect('dbname=d99r7muj1t784d port=5432')
 
     yield(connection)
 
