@@ -1,9 +1,5 @@
 require 'sinatra'
-require 'uri'
-require 'pry'
-require 'shotgun'
 require 'pg'
-require 'date'
 
 def db_connection
   begin
