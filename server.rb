@@ -3,7 +3,7 @@ require 'pg'
 
 def db_connection
   begin
-    connection = PG.connect('dbname=d99r7muj1t784d port=5432')
+    connection = PG.connect(ENV['postgres://xtdrykpensibhs:KKdBG7JvmnCNIsAarg5L1yBnUX@ec2-107-20-224-35.compute-1.amazonaws.com:5432/d99r7muj1t784d'] || 'postgres://localhost/clinictopics')
 
     yield(connection)
 
