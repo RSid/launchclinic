@@ -91,7 +91,7 @@ post '/vote' do
   @vote=params["vote"]
   increment_topic_votes(@vote)
 
-  redirect '/staff'
+  redirect '/'
 end
 
 post '/unvote' do
